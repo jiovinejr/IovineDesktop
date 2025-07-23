@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:ShipApp.MVVM.Models"
+             x:Class="ShipApp.MainPage"
+             x:Name="MainPageRoot"
+             Title="Iovine Ship">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+
+            <!-- Navigation Bar -->
+        <CollectionView Grid.Column="0"
+                       ItemsSource="{Binding NavigationItems}" 
+                       BackgroundColor="LightGray">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5">
+                        <Button Text="{Binding Name}"
+                                Style="{StaticResource NavButtonStyle}"
+                                Command="{Binding Source={x:Reference MainPageRoot}, Path=BindingContext.NavigateCommand}"
+                                CommandParameter="{Binding}"
+                                >
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Content Area -->
+        <ContentView Grid.Column="1"
+                    Content="{Binding CurrentContent}"
+                    x:Name="ContentHost" />
+
+    </Grid>
+
+</ContentPage>

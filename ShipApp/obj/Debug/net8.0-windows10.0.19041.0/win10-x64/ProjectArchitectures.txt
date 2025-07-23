@@ -1,0 +1,1 @@
+C:\Users\jiovi\workspace\ShipDesktop\MauiAttempt\ShipApp\ShipApp.csproj;x64
