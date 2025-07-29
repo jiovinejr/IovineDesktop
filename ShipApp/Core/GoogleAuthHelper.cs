@@ -17,14 +17,14 @@ namespace ShipApp.Core
 
             var credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                 GoogleClientSecrets.FromStream(stream).Secrets,
-                new[] { DriveService.Scope.DriveFile },
-                "user",
+                new[] { DriveService.Scope.Drive },
+                "user2",
                 CancellationToken.None);
 
             return new DriveService(new BaseClientService.Initializer
             {
                 HttpClientInitializer = credential,
-                ApplicationName = "Iovine Desktop"
+                ApplicationName = "IovineDesktop"
             });
         }
 
@@ -35,14 +35,14 @@ namespace ShipApp.Core
 
             var credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                 GoogleClientSecrets.FromStream(stream).Secrets,
-                new[] { GmailService.Scope.GmailSend },
+                new[] { GmailService.Scope.GmailCompose },
                 "user",
                 CancellationToken.None);
 
             return new GmailService(new BaseClientService.Initializer
             {
                 HttpClientInitializer = credential,
-                ApplicationName = "ShipApp Desktop"
+                ApplicationName = "IovineDesktop"
             });
         }
     }

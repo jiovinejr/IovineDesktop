@@ -9,8 +9,8 @@ namespace ShipApp.MVVM.Models
     public class FileUpload
     {
         public long Id { get; set; }
-        public string FileName { get; set; }
-        public string FileDriveId { get; set; }
+        public string? FileName { get; set; }
+        public string? FileDriveId { get; set; }
         public bool IsProcessed { get; set; }
         public DateTime TimeUploaded { get; set; }
 

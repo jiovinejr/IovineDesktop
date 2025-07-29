@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jiovi\\workspace\\ShipDesktop\\ShipApp\\ShipApp.csproj": {}
+    "C:\\Users\\jiovi\\workspace\\IovineShipDesktop\\ShipApp\\ShipApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jiovi\\workspace\\ShipDesktop\\ShipApp\\ShipApp.csproj": {
+    "C:\\Users\\jiovi\\workspace\\IovineShipDesktop\\ShipApp\\ShipApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jiovi\\workspace\\ShipDesktop\\ShipApp\\ShipApp.csproj",
+        "projectUniqueName": "C:\\Users\\jiovi\\workspace\\IovineShipDesktop\\ShipApp\\ShipApp.csproj",
         "projectName": "ShipApp",
-        "projectPath": "C:\\Users\\jiovi\\workspace\\ShipDesktop\\ShipApp\\ShipApp.csproj",
+        "projectPath": "C:\\Users\\jiovi\\workspace\\IovineShipDesktop\\ShipApp\\ShipApp.csproj",
         "packagesPath": "C:\\Users\\jiovi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jiovi\\workspace\\ShipDesktop\\ShipApp\\obj\\",
+        "outputPath": "C:\\Users\\jiovi\\workspace\\IovineShipDesktop\\ShipApp\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
@@ -103,6 +103,10 @@
               "version": "[8.0.1, )",
               "autoReferenced": true
             },
+            "NPOI": {
+              "target": "Package",
+              "version": "[2.7.4, )"
+            },
             "Npgsql": {
               "target": "Package",
               "version": "[9.0.3, )"
@@ -173,6 +177,10 @@
               "target": "Package",
               "version": "[8.0.1, )",
               "autoReferenced": true
+            },
+            "NPOI": {
+              "target": "Package",
+              "version": "[2.7.4, )"
             },
             "Npgsql": {
               "target": "Package",
@@ -245,6 +253,10 @@
               "version": "[8.0.1, )",
               "autoReferenced": true
             },
+            "NPOI": {
+              "target": "Package",
+              "version": "[2.7.4, )"
+            },
             "Npgsql": {
               "target": "Package",
               "version": "[9.0.3, )"
@@ -310,6 +322,10 @@
             "Microsoft.Maui.Controls.Compatibility": {
               "target": "Package",
               "version": "[8.0.3, )"
+            },
+            "NPOI": {
+              "target": "Package",
+              "version": "[2.7.4, )"
             },
             "Npgsql": {
               "target": "Package",

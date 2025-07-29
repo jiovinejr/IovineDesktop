@@ -1,4 +1,5 @@
-﻿using ShipApp.Core;
+﻿using Google.Apis.Drive.v3;
+using ShipApp.Core;
 using System.Diagnostics;
 
 namespace ShipApp
@@ -22,6 +23,7 @@ namespace ShipApp
         {
             Debug.WriteLine("WERE HERE");
             var driveService = await GoogleAuthHelper.GetDriveServiceAsync();
+            
         }
     }
 }

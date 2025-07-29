@@ -16,6 +16,7 @@ namespace ShipApp.MVVM.ViewModels
     {
         public ObservableCollection<FileUpload> FilesToProcess { get; set; }
         public ICommand DownloadCommand { get; }
+        
 
         public HomeViewModel() 
         {
@@ -33,12 +34,18 @@ namespace ShipApp.MVVM.ViewModels
             {
                 var driveService = await GoogleAuthHelper.GetDriveServiceAsync();
                 var downloader = new DriveDownloadService(driveService);
+                Debug.WriteLine(file.ToString());
 
-                string fileName = $"{file.FileName}"; // or .xls depending on your actual format
-                string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), fileName);
-
-                await downloader.DownloadFileAsync(file.FileDriveId, savePath);
-                Debug.WriteLine($"✅ File downloaded to: {savePath}");
+                string fileName = $"{file.FileName}";
+                MemoryStream stream = new MemoryStream();
+                stream = await downloader.DownloadFileAsync(file.FileDriveId);
+                var rdf = new ReadDataFile(stream, file.FileName);
+                List<ExcelRecord> records = rdf.CreateExcelOrderList();
+                Debug.WriteLine($"✅ File downloaded: {file.FileName}");
+                foreach (ExcelRecord record in records)
+                {
+                    Debug.WriteLine(record.ToString());
+                }
             }
             catch (Exception ex)
             {

@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ShipApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+7797d00b735a9d88dfdbf44f7506dc408f681d6a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+b00843712661295152937eea241275c044635ea2")]
 [assembly: System.Reflection.AssemblyProductAttribute("ShipApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ShipApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
