@@ -41,6 +41,28 @@ namespace ShipApp.Service
             return stream;
         }
 
+        public async Task RenameDriveFile(string fileId, string newName)
+        {
+            try
+            {
+                var fileMetadata = new Google.Apis.Drive.v3.Data.File
+                {
+                    Name = newName
+                };
+
+                var updateRequest = _driveService.Files.Update(fileMetadata, fileId);
+                updateRequest.Fields = "id, name";
+
+                var updatedFile = await updateRequest.ExecuteAsync();
+
+                Debug.WriteLine($"✅ File renamed to: {updatedFile.Name} (ID: {updatedFile.Id})");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"❌ Rename failed: {ex.Message}");
+            }
+        }
+
         public async Task ListFiles()
         {
             try

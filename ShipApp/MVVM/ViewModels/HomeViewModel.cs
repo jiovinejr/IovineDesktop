@@ -46,6 +46,9 @@ namespace ShipApp.MVVM.ViewModels
                 {
                     Debug.WriteLine(record.ToString());
                 }
+
+                string newName = records[0].ShipName;
+                await downloader.RenameDriveFile(file.FileDriveId, newName);
             }
             catch (Exception ex)
             {

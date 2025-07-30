@@ -24,7 +24,7 @@
 		<ApplicationTitle>ShipApp</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.shipapp</ApplicationId>
+		<ApplicationId>com.iovine.shipapp</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

@@ -15,7 +15,7 @@ namespace ShipApp.Service
                 using var conn = DbConnectionFactory.CreateConnection();
                 conn.Open();
 
-                string sql = @"INSERT INTO file_uploads (file_name, file_drive_id, is_processed, time_uploaded)
+                string sql = @"INSERT INTO file_upload (file_name, file_drive_id, is_processed, time_uploaded)
                        VALUES (@fileName, @fileDriveId, @isProcessed, @timeUploaded)";
 
                 using var cmd = new NpgsqlCommand(sql, conn);
@@ -53,7 +53,7 @@ namespace ShipApp.Service
 
                 //NEED TO WRITE THIS CODE
                 string sql = @"SELECT id, file_name, file_drive_id, is_processed, time_uploaded 
-                       FROM file_uploads 
+                       FROM file_upload 
                        WHERE is_processed = false";
 
                 using var cmd = new NpgsqlCommand(sql, conn);
