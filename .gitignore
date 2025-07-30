@@ -1,2 +1,3 @@
 # Ignore Google OAuth secret
 client_secrets.json
+.vs/
