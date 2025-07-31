@@ -14,5 +14,12 @@ namespace ShipApp.MVVM.Models
         public decimal CaseWeight { get; set; }
         public int ItemInventoryId { get; set; }
         public int ItemQbId { get; set; }
+
+        public override string ToString()
+        {
+            return $"Item {{ Id: {ItemId}, Original: \"{OriginalItemName}\", Clean: \"{CleanItemName}\", " +
+                   $"Weight: {CaseWeight}, InventoryId: {ItemInventoryId}, QbId: {ItemQbId} }}";
+        }
+
     }
 }

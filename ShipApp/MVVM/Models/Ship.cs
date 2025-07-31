@@ -1,7 +1,4 @@
-﻿using System;
-using Xamarin.Google.Crypto.Tink.Signature;
-
-namespace ShipApp.Models
+﻿namespace ShipApp.Models
 {
     public class Ship
     {

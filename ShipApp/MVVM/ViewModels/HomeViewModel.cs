@@ -33,6 +33,8 @@ namespace ShipApp.MVVM.ViewModels
             try
             {
                 var driveService = await GoogleAuthHelper.GetDriveServiceAsync();
+                var itemService = new ItemService();
+                var measurementService = new MeasurementService();
                 var downloader = new DriveDownloadService(driveService);
                 Debug.WriteLine(file.ToString());
 
@@ -44,7 +46,25 @@ namespace ShipApp.MVVM.ViewModels
                 Debug.WriteLine($"✅ File downloaded: {file.FileName}");
                 foreach (ExcelRecord record in records)
                 {
-                    Debug.WriteLine(record.ToString());
+                    Item item = itemService.GetItemByOriginalName(record.Item);
+                    Measurement measurement = measurementService.GetMeasurementObjectByOriginalName(record.Measurement);
+                    if (item != null)
+                    {
+                        Debug.WriteLine(item.ToString());
+                    }
+                    else
+                    {
+                        Debug.WriteLine($"Item {record.Item} Not Found");
+                    }
+                    if (measurement != null)
+                    {
+                        Debug.WriteLine(measurement.ToString());
+                    }
+                    else
+                    {
+                        Debug.WriteLine($"Measurement {record.Measurement} Not Found.");
+                    }
+
                 }
 
                 string newName = records[0].ShipName;

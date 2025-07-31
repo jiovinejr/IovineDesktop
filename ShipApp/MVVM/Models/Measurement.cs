@@ -11,5 +11,10 @@ namespace ShipApp.MVVM.Models
         public int MeasurementId { get; set; }
         public string OriginalMeasurementName { get; set; }
         public string CleanMeasurementName { get; set; }
+
+        public override string ToString()
+        {
+            return $"Measurement {{ Id: {MeasurementId}, Original: \"{OriginalMeasurementName}\", Clean: \"{CleanMeasurementName}\" }}";
+        }
     }
 }
