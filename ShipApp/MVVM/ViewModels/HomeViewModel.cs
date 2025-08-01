@@ -9,6 +9,7 @@ using ShipApp.Service;
 using ShipApp.MVVM.Models;
 using System.Windows.Input;
 using System.Diagnostics;
+using ShipApp.Models;
 
 namespace ShipApp.MVVM.ViewModels
 {
@@ -23,7 +24,10 @@ namespace ShipApp.MVVM.ViewModels
             var uploadsService = new FileUploadService();
             FilesToProcess = uploadsService.GetFilesToProcess();
 
-            DownloadCommand = new RelayCommand<FileUpload>(async (file) => await DownloadFileAsync(file));
+            DownloadCommand = new RelayCommand<FileUpload>(
+                async (file) => await DownloadFileAsync(file),
+                (file) => file != null && !file.IsProcessing
+                );
 
         }
 
@@ -32,11 +36,13 @@ namespace ShipApp.MVVM.ViewModels
         {
             try
             {
+                file.IsProcessing = true;
+
                 var driveService = await GoogleAuthHelper.GetDriveServiceAsync();
                 var itemService = new ItemService();
                 var measurementService = new MeasurementService();
+                var shipService = new ShipService();
                 var downloader = new DriveDownloadService(driveService);
-                Debug.WriteLine(file.ToString());
 
                 string fileName = $"{file.FileName}";
                 MemoryStream stream = new MemoryStream();
@@ -44,36 +50,26 @@ namespace ShipApp.MVVM.ViewModels
                 var rdf = new ReadDataFile(stream, file.FileName);
                 List<ExcelRecord> records = rdf.CreateExcelOrderList();
                 Debug.WriteLine($"✅ File downloaded: {file.FileName}");
-                foreach (ExcelRecord record in records)
-                {
-                    Item item = itemService.GetItemByOriginalName(record.Item);
-                    Measurement measurement = measurementService.GetMeasurementObjectByOriginalName(record.Measurement);
-                    if (item != null)
-                    {
-                        Debug.WriteLine(item.ToString());
-                    }
-                    else
-                    {
-                        Debug.WriteLine($"Item {record.Item} Not Found");
-                    }
-                    if (measurement != null)
-                    {
-                        Debug.WriteLine(measurement.ToString());
-                    }
-                    else
-                    {
-                        Debug.WriteLine($"Measurement {record.Measurement} Not Found.");
-                    }
 
-                }
+                Ship ship = new Ship(records[0].ShipName);
+                ship = shipService.AddNewShipWithRollback(ship);
+                Debug.WriteLine(ship.ToString());
 
-                string newName = records[0].ShipName;
-                await downloader.RenameDriveFile(file.FileDriveId, newName);
+                
+
+                //foreach (ExcelRecord record in records)
+                //{
+                //    Debug.WriteLine(record.ToString());
+                //}
+
+                //string newName = records[0].ShipName;
+                //await downloader.RenameDriveFile(file.FileDriveId, newName);
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"❌ Download error: {ex.Message}");
             }
+            finally { file.IsProcessing = false; };
         }
     }
 }

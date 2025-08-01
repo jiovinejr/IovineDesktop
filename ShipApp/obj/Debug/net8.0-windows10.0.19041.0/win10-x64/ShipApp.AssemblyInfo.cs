@@ -11,14 +11,14 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.PackageName", "com.companyname.shipapp")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.PackageName", "com.iovine.shipapp")]
 [assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.PublisherName", "User Name")]
 [assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.Name", "ShipApp")]
 [assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.Version", "1.0.0.1")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("ShipApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+fbab0e1945788824a040e3fbf11b9fd143fc0d7e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+4c1540bf58c4886ba3c95407d446214efd673d8e")]
 [assembly: System.Reflection.AssemblyProductAttribute("ShipApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ShipApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

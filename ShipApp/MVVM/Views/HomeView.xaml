@@ -17,9 +17,19 @@
                                 <Label Text="{Binding FileName}"
                                        HorizontalOptions="Start"
                                        VerticalOptions="Center"/>
-                                <Button Text="Process"
+                                <ActivityIndicator 
+                                        IsRunning="{Binding IsProcessing}" 
+                                        IsVisible="{Binding IsProcessing}"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Center"
+                                        WidthRequest="30"
+                                        HeightRequest="30"
+                                        Margin="0,0,160,0" />
+                                <Button AutomationId="{Binding FileDriveId}"
+                                        Text="Process"
                                         Command="{Binding BindingContext.DownloadCommand, Source={x:Reference Name=HomeListView}}"
-                                        CommandParameter="{Binding .}" 
+                                        CommandParameter="{Binding .}"
+                                        IsEnabled="{Binding IsProcessing, Converter={StaticResource InverseBoolConverter}}"
                                         WidthRequest="150"
                                         HorizontalOptions="End"/>
                             </Grid>

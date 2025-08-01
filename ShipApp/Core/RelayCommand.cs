@@ -34,7 +34,14 @@ public class RelayCommand<T> : ICommand
         _canExecute = canExecute;
     }
 
-    public bool CanExecute(object parameter) => _canExecute?.Invoke((T)parameter) ?? true;
+    public bool CanExecute(object parameter)
+    {
+        if (parameter is T typedParam)
+            return _canExecute?.Invoke(typedParam) ?? true;
+
+        // Avoid crash if parameter is not yet of correct type
+        return true;
+    }
 
     public void Execute(object parameter) => _execute((T)parameter);
 

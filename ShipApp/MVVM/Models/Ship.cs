@@ -19,6 +19,17 @@
             CheckedStickers = string.Empty;
             IsPrinted = false;
         }
+
+        public override string? ToString()
+        {
+            return $"ShipId: {ShipId}, " +
+                   $"ShipName: {ShipName}, " +
+                   $"Complete: {Complete}, " +
+                   $"IsNeeded: {IsNeeded}, " +
+                   $"DateCompleted: {(DateCompleted.HasValue ? DateCompleted.Value.ToString("yyyy-MM-dd") : "null")}, " +
+                   $"CheckedStickers: {CheckedStickers}, " +
+                   $"IsPrinted: {IsPrinted}";
+        }
     }
 
 }
