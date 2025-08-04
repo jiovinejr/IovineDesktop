@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShipApp.MVVM.Models
 {
-    internal class Measurement
+    public class Measurement
     {
         public int MeasurementId { get; set; }
         public string OriginalMeasurementName { get; set; }

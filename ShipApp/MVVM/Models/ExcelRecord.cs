@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShipApp.MVVM.Models
 {
-    internal class ExcelRecord
+    public class ExcelRecord
     {
         public int RowNumber { get; set; }
         public decimal Quantity { get; set; }

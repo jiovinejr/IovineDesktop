@@ -42,7 +42,7 @@ namespace ShipApp.Service
             }
         }
 
-        public ObservableCollection<FileUpload> GetFilesToProcess() 
+        public ObservableCollection<FileUpload> GetFilesToProcess()
         {
             ObservableCollection<FileUpload> filesToProcess = new ObservableCollection<FileUpload>();
 
@@ -51,7 +51,6 @@ namespace ShipApp.Service
                 using var conn = DbConnectionFactory.CreateConnection();
                 conn.Open();
 
-                //NEED TO WRITE THIS CODE
                 string sql = @"SELECT id, file_name, file_drive_id, is_processed, time_uploaded 
                        FROM file_upload 
                        WHERE is_processed = false";
@@ -87,6 +86,34 @@ namespace ShipApp.Service
             }
 
         }
+
+        public void MarkFileAsProcessed(long fileId)
+        {
+            try
+            {
+                using var conn = DbConnectionFactory.CreateConnection();
+                conn.Open();
+
+                string sql = @"UPDATE file_upload SET is_processed = true WHERE id = @fileId";
+
+                using var cmd = new NpgsqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("fileId", fileId);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+                Debug.WriteLine($"✅ Marked file_id={fileId} as processed ({rowsAffected} row(s) affected)");
+            }
+            catch (PostgresException ex)
+            {
+                Debug.WriteLine($"❌ PostgresException: {ex.MessageText} | Code: {ex.SqlState} | Detail: {ex.Detail}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"❌ General DB Error: {ex}");
+                throw;
+            }
+        }
+
 
     }
 }

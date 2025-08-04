@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ShipApp.MVVM.Models
 {
-    public class QbItem
+    public class InventoryItem
     {
         public int Id { get; set; }
-        public string QbItemName { get; set; }
-        public string QbItemDescription { get; set; }
+        public string Category { get; set; }
+        public string InventoryName { get; set; }
     }
 }

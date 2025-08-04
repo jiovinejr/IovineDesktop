@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShipApp.MVVM.Models
 {
-    internal class OrderRecord
+    public class OrderRecord
     {
         public int OrderLineId { get; set; }
         public long OrderShipId { get; set; }

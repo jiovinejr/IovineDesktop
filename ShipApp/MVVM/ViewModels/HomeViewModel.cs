@@ -17,12 +17,22 @@ namespace ShipApp.MVVM.ViewModels
     {
         public ObservableCollection<FileUpload> FilesToProcess { get; set; }
         public ICommand DownloadCommand { get; }
+
+        private readonly ItemService _itemService;
+        private readonly ShipService _shipService;
+        private readonly FileUploadService _fileUploadService;
+        private readonly MeasurementService _measurementService;
         
 
         public HomeViewModel() 
         {
-            var uploadsService = new FileUploadService();
-            FilesToProcess = uploadsService.GetFilesToProcess();
+            _fileUploadService = new FileUploadService();
+            _measurementService = new MeasurementService();
+            _shipService = new ShipService();
+            _itemService = new ItemService();
+
+
+            FilesToProcess = _fileUploadService.GetFilesToProcess();
 
             DownloadCommand = new RelayCommand<FileUpload>(
                 async (file) => await DownloadFileAsync(file),
@@ -39,9 +49,6 @@ namespace ShipApp.MVVM.ViewModels
                 file.IsProcessing = true;
 
                 var driveService = await GoogleAuthHelper.GetDriveServiceAsync();
-                var itemService = new ItemService();
-                var measurementService = new MeasurementService();
-                var shipService = new ShipService();
                 var downloader = new DriveDownloadService(driveService);
 
                 string fileName = $"{file.FileName}";
@@ -52,7 +59,7 @@ namespace ShipApp.MVVM.ViewModels
                 Debug.WriteLine($"✅ File downloaded: {file.FileName}");
 
                 Ship ship = new Ship(records[0].ShipName);
-                ship = shipService.AddNewShipWithRollback(ship);
+                ship = _shipService.AddNewShip(ship);
                 Debug.WriteLine(ship.ToString());
 
                 

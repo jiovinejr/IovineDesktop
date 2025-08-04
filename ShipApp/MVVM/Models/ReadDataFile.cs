@@ -7,7 +7,7 @@ using System;
 
 namespace ShipApp.MVVM.Models
 {
-    internal class ReadDataFile
+    public class ReadDataFile
     {
         private readonly MemoryStream _stream;
         private readonly IWorkbook _workbook;
