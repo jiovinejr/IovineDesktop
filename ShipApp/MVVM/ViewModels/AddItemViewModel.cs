@@ -40,16 +40,30 @@ namespace ShipApp.MVVM.ViewModels
             }
         }
 
+        private string _caseWeightText = string.Empty;
+        public string CaseWeightText
+        {
+            get => _caseWeightText;
+            set
+            {
+                SetProperty(ref _caseWeightText, value);
+                // Try parse and update CaseWeight
+                if (decimal.TryParse(value, out var parsed))
+                    CaseWeight = parsed;
+                else
+                    CaseWeight = 0;
+
+                _saveItemCommand.RaiseCanExecuteChanged();
+            }
+        }
+
         private decimal _caseWeight;
         public decimal CaseWeight
         {
             get => _caseWeight;
-            set
-            {
-                SetProperty(ref _caseWeight, value);
-                _saveItemCommand.RaiseCanExecuteChanged();
-            }
+            set => SetProperty(ref _caseWeight, value);
         }
+
 
         private InventoryItem _selectedInventoryItem;
         public InventoryItem SelectedInventoryItem

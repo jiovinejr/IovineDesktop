@@ -1,26 +1,40 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ShipApp.MVVM.Views.AddItemPage"
              Title="AddItemPage">
-    <VerticalStackLayout Padding="20">
-        <Label Text="Add New Item" FontSize="20" FontAttributes="Bold" />
+    <ScrollView>
+        <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="20">
+            <Frame Padding="20"
+                   WidthRequest="400"
+                   HasShadow="True"
+                   CornerRadius="12"
+                   BackgroundColor="White"
+                   HorizontalOptions="Center">
+                <VerticalStackLayout Spacing="10">
 
-        <Entry Text="{Binding OriginalItemName}" IsEnabled="False"/>
-        <Entry Text="{Binding CleanItemName}" Placeholder="Clean Item Name" />
-        <Entry Text="{Binding CaseWeight}" Placeholder="Case Weight" Keyboard="Numeric" />
+                    <Label Text="Add New Item" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
 
-        <Picker Title="Select Inventory Item"
-        ItemsSource="{Binding InventoryItems}"
-        ItemDisplayBinding="{Binding InventoryName}"
-        SelectedItem="{Binding SelectedInventoryItem}" />
+                    <Entry Text="{Binding OriginalItemName}" IsEnabled="False" Placeholder="Original Item Name" />
+                    <Entry Text="{Binding CleanItemName}" Placeholder="Clean Item Name" />
+                    <Entry Text="{Binding CaseWeightText}" Placeholder="Case Weight" Keyboard="Numeric" />
 
-        <Picker Title="Select Qb Item"
-        ItemsSource="{Binding QbItems}"
-        ItemDisplayBinding="{Binding QbItemName}"
-        SelectedItem="{Binding SelectedQbItem}" />
+                    <Picker Title="Select Inventory Item"
+                            ItemsSource="{Binding InventoryItems}"
+                            ItemDisplayBinding="{Binding InventoryName}"
+                            SelectedItem="{Binding SelectedInventoryItem}" />
 
+                    <Picker Title="Select Qb Item"
+                            ItemsSource="{Binding QbItems}"
+                            ItemDisplayBinding="{Binding QbItemName}"
+                            SelectedItem="{Binding SelectedQbItem}" />
 
-        <Button Text="Save Item" Command="{Binding SaveItemCommand}" Margin="0,20,0,0"/>
-    </VerticalStackLayout>
+                    <Button Text="Save Item"
+                            Command="{Binding SaveItemCommand}"
+                            Margin="0,20,0,0"
+                            HorizontalOptions="Center" />
+
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

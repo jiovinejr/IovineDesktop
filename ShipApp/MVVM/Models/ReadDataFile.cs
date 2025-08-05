@@ -66,6 +66,7 @@ namespace ShipApp.MVVM.Models
             {
                 ".xls" => new HSSFWorkbook(stream),
                 ".xlsx" => new XSSFWorkbook(stream),
+                ".xlsm" => new XSSFWorkbook(stream),
                 _ => throw new InvalidDataException("Unsupported file extension")
             };
         }

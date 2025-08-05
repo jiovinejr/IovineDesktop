@@ -23,9 +23,9 @@ namespace ShipApp.MVVM.ViewModels
         private readonly ShipService _shipService;
         private readonly FileUploadService _fileUploadService;
         private readonly MeasurementService _measurementService;
-        
 
-        public HomeViewModel() 
+
+        public HomeViewModel()
         {
             _fileUploadService = new FileUploadService();
             _measurementService = new MeasurementService();
@@ -51,7 +51,7 @@ namespace ShipApp.MVVM.ViewModels
 
                 var driveService = await GoogleAuthHelper.GetDriveServiceAsync();
                 var downloader = new DriveDownloadService(driveService);
-                
+
                 //Download Logic
                 string fileName = $"{file.FileName}";
                 MemoryStream stream = new MemoryStream();
@@ -67,32 +67,30 @@ namespace ShipApp.MVVM.ViewModels
                 //Loop Through excel file
                 foreach (ExcelRecord record in records)
                 {
+                    //Handle Item
                     Item item = _itemService.GetItemByOriginalName(record.Item);
+                    Measurement measurement = _measurementService.GetMeasurementObjectByOriginalName(record.Measurement);
                     if (item == null)
                     {
-                        var tcs = new TaskCompletionSource<Item>();
-                        var addItemPage = new AddItemPage(record.Item, tcs); // 👈 You pass the original name and TCS
-
-                        // Show modal
-                        await Shell.Current.Navigation.PushModalAsync(addItemPage);
-
-                        // Wait for modal to resolve
-                        item = await tcs.Task;
-                        await Shell.Current.Navigation.PopModalAsync();
-                        // Optional: reload item from DB to be sure it's persisted correctly
-                        item = _itemService.GetItemByOriginalName(item.OriginalItemName);
-
+                        item = await HandleUnknownItemAsync(record.Item);
                         if (item == null)
                         {
                             Debug.WriteLine($"❌ Item still not found after modal for: {record.Item}");
-                            continue; // Or throw, depending on your flow
+                            continue; // Or throw
                         }
-                        
+                    }
+                    if (measurement == null)
+                    {
+                        measurement = await HandleUnknownMeasurement(record.Measurement);
+                        if (measurement == null)
+                        {
+                            Debug.WriteLine($"❌ Measurement still not found after modal for: {record.Item}");
+                            continue; // Or throw
+                        }
                     }
 
-                    // ✅ Now `item` is guaranteed to exist. You can proceed with DB inserts.
                     Debug.WriteLine($"✅ Found or added item: {item}");
-                    // e.g., use `item.ItemId` to insert the record
+                    Debug.WriteLine(measurement.ToString());
                 }
 
                 //string newName = records[0].ShipName;
@@ -104,5 +102,48 @@ namespace ShipApp.MVVM.ViewModels
             }
             finally { file.IsProcessing = false; };
         }
+
+        private async Task<Measurement?> HandleUnknownMeasurement(string originalMeasurementName)
+        {
+            try
+            {
+                var tcs = new TaskCompletionSource<Measurement>();
+                var addMeasurementPage = new AddMeasurementPage(originalMeasurementName, tcs);
+
+                await Shell.Current.Navigation.PushModalAsync(addMeasurementPage);
+
+                var measurement = await tcs.Task;
+                await Shell.Current.Navigation.PopModalAsync();
+
+                return measurement;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"❌ Failed to handle unknown measurement: {ex.Message}");
+                return null;
+            }
+        }
+
+        private async Task<Item?> HandleUnknownItemAsync(string originalItemName)
+        {
+            try
+            {
+                var tcs = new TaskCompletionSource<Item>();
+                var addItemPage = new AddItemPage(originalItemName, tcs);
+
+                await Shell.Current.Navigation.PushModalAsync(addItemPage);
+
+                var item = await tcs.Task;
+                await Shell.Current.Navigation.PopModalAsync();
+
+                return item;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"❌ Failed to handle unknown item: {ex.Message}");
+                return null;
+            }
+        }
+
     }
 }
