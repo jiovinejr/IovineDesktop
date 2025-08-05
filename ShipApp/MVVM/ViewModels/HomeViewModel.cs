@@ -10,6 +10,7 @@ using ShipApp.MVVM.Models;
 using System.Windows.Input;
 using System.Diagnostics;
 using ShipApp.Models;
+using ShipApp.MVVM.Views;
 
 namespace ShipApp.MVVM.ViewModels
 {
@@ -50,7 +51,8 @@ namespace ShipApp.MVVM.ViewModels
 
                 var driveService = await GoogleAuthHelper.GetDriveServiceAsync();
                 var downloader = new DriveDownloadService(driveService);
-
+                
+                //Download Logic
                 string fileName = $"{file.FileName}";
                 MemoryStream stream = new MemoryStream();
                 stream = await downloader.DownloadFileAsync(file.FileDriveId);
@@ -58,16 +60,40 @@ namespace ShipApp.MVVM.ViewModels
                 List<ExcelRecord> records = rdf.CreateExcelOrderList();
                 Debug.WriteLine($"✅ File downloaded: {file.FileName}");
 
-                Ship ship = new Ship(records[0].ShipName);
-                ship = _shipService.AddNewShip(ship);
-                Debug.WriteLine(ship.ToString());
+                //Add Ship
+                //Ship ship = new Ship(records[0].ShipName);
+                //ship = _shipService.AddNewShip(ship);
 
-                
+                //Loop Through excel file
+                foreach (ExcelRecord record in records)
+                {
+                    Item item = _itemService.GetItemByOriginalName(record.Item);
+                    if (item == null)
+                    {
+                        var tcs = new TaskCompletionSource<Item>();
+                        var addItemPage = new AddItemPage(record.Item, tcs); // 👈 You pass the original name and TCS
 
-                //foreach (ExcelRecord record in records)
-                //{
-                //    Debug.WriteLine(record.ToString());
-                //}
+                        // Show modal
+                        await Shell.Current.Navigation.PushModalAsync(addItemPage);
+
+                        // Wait for modal to resolve
+                        item = await tcs.Task;
+                        await Shell.Current.Navigation.PopModalAsync();
+                        // Optional: reload item from DB to be sure it's persisted correctly
+                        item = _itemService.GetItemByOriginalName(item.OriginalItemName);
+
+                        if (item == null)
+                        {
+                            Debug.WriteLine($"❌ Item still not found after modal for: {record.Item}");
+                            continue; // Or throw, depending on your flow
+                        }
+                        
+                    }
+
+                    // ✅ Now `item` is guaranteed to exist. You can proceed with DB inserts.
+                    Debug.WriteLine($"✅ Found or added item: {item}");
+                    // e.g., use `item.ItemId` to insert the record
+                }
 
                 //string newName = records[0].ShipName;
                 //await downloader.RenameDriveFile(file.FileDriveId, newName);

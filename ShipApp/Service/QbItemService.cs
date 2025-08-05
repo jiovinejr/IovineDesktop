@@ -28,11 +28,12 @@ namespace ShipApp.Service
 
                 while (reader.Read ())
                 {
+                    int descOrdinal = reader.GetOrdinal("qb_item_description");
                     qbItems.Add(new QbItem
                     {
                         Id = reader.GetInt32(reader.GetOrdinal("id")),
                         QbItemName = reader.GetString(reader.GetOrdinal("qb_item_name")),
-                        QbItemDescription = reader.GetString(reader.GetOrdinal("qb_item_description")),
+                        QbItemDescription = reader.IsDBNull(descOrdinal) ? null : reader.GetString(descOrdinal),
                     });
                 }
             }

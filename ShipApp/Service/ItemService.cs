@@ -12,6 +12,36 @@ namespace ShipApp.Service
 {
     internal class ItemService
     {
+        public Item InsertNewItem(Item item)
+        {
+            try
+            {
+                using var conn = DbConnectionFactory.CreateConnection();
+                conn.Open();
+
+                string sql = @"
+            INSERT INTO item (original_item_name, clean_item_name, case_weight, item_inventory_id, item_qb_id)
+            VALUES (@original, @clean, @weight, @inventoryId, @qbId)
+            RETURNING item_id";
+
+                using var cmd = new NpgsqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("original", item.OriginalItemName);
+                cmd.Parameters.AddWithValue("clean", item.CleanItemName);
+                cmd.Parameters.AddWithValue("weight", item.CaseWeight);
+                cmd.Parameters.AddWithValue("inventoryId", item.ItemInventoryId);
+                cmd.Parameters.AddWithValue("qbId", item.ItemQbId);
+
+                int insertedId = (int)cmd.ExecuteScalar();
+                item.ItemId = insertedId;
+                return item;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"❌ InsertNewItem failed: {ex.Message}");
+                throw;
+            }
+        }
+
 
         public Item GetItemByOriginalName(string originalName)
         {

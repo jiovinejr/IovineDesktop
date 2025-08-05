@@ -10,6 +10,6 @@ namespace ShipApp.MVVM.Models
     {
         public int Id { get; set; }
         public string QbItemName { get; set; }
-        public string QbItemDescription { get; set; }
+        public string? QbItemDescription { get; set; }
     }
 }

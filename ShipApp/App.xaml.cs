@@ -1,6 +1,7 @@
 ﻿using Google.Apis.Drive.v3;
 using ShipApp.Core;
 using System.Diagnostics;
+using ShipApp.Data;
 
 namespace ShipApp
 {
@@ -10,6 +11,8 @@ namespace ShipApp
         public App()
         {
             InitializeComponent();
+
+            AppDataStore.Instance.LoadData();
 
             MainPage = new AppShell();
 
