@@ -1,6 +1,7 @@
 ﻿using Npgsql;
 using ShipApp.Data;
 using ShipApp.MVVM.Models;
+using ShipApp.MVVM.Views;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -72,6 +73,27 @@ namespace ShipApp.Service
                 OriginalMeasurementName = reader.GetString(reader.GetOrdinal("original_measurement_name")),
                 CleanMeasurementName = reader.GetString(reader.GetOrdinal("clean_measurement_name"))
             };
+        }
+
+        public async Task<Measurement?> HandleUnknownMeasurement(string originalMeasurementName)
+        {
+            try
+            {
+                var tcs = new TaskCompletionSource<Measurement>();
+                var addMeasurementPage = new AddMeasurementPage(originalMeasurementName, tcs);
+
+                await Shell.Current.Navigation.PushModalAsync(addMeasurementPage);
+
+                var measurement = await tcs.Task;
+                await Shell.Current.Navigation.PopModalAsync();
+
+                return measurement;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"❌ Failed to handle unknown measurement: {ex.Message}");
+                return null;
+            }
         }
     }
 }

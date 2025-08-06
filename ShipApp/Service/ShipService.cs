@@ -14,40 +14,52 @@ namespace ShipApp.Service
 {
     internal class ShipService
     {
-        public Ship AddNewShipWithRollback(Ship ship)
+
+        public Ship GetShipByShipName(string shipName)
         {
-            using var conn = DbConnectionFactory.CreateConnection();
-            conn.Open();
-
-            using var transaction = conn.BeginTransaction(); // Start transaction
-
             try
             {
-                using var cmd = conn.CreateCommand();
-                cmd.Transaction = transaction;
-                cmd.CommandText = @"
-                INSERT INTO ship (ship_name, complete, is_needed, date_completed, checked_stickers, is_printed)
-                VALUES (@name, @complete, @needed, @date, @stickers, @printed)
-                RETURNING ship_id;
-                ";
-                cmd.Parameters.AddWithValue("name", ship.ShipName);
-                cmd.Parameters.AddWithValue("complete", ship.Complete);
-                cmd.Parameters.AddWithValue("needed", ship.IsNeeded); // testing default
-                cmd.Parameters.Add("date", NpgsqlDbType.Date).Value = ship.DateCompleted ?? (object)DBNull.Value;
-                cmd.Parameters.AddWithValue("stickers", ship.CheckedStickers);
-                cmd.Parameters.AddWithValue("printed", ship.IsPrinted);
+                Ship ship = null;
+                using var conn = DbConnectionFactory.CreateConnection();
+                conn.Open();
 
-                ship.ShipId = Convert.ToInt64(cmd.ExecuteScalar());
+                string sql = @"SELECT * FROM ship WHERE ship_name = @name";
 
-                // Rollback instead of commit to avoid saving during test
-                transaction.Rollback();
-                Debug.WriteLine($"{ship.ShipName} in database!");
+                using var cmd = new NpgsqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("name", shipName);
+
+                using var reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    ship = MapShipToReader(reader);
+                }
                 return ship;
             }
             catch (Exception ex)
             {
-                transaction.Rollback();
-                Debug.WriteLine($"❌ Insert failed: {ex.Message}");
+                Debug.WriteLine($"❌ ShipService Error: {ex.Message}");
+                throw;
+            }
+        }
+
+        public int DeleteShipById (Ship ship)
+        {
+            try
+            {
+                using var conn = DbConnectionFactory.CreateConnection();
+                conn.Open();
+
+                string sql = @"DELETE FROM ship WHERE order_ship_id = @ship";
+
+                using var cmd = new NpgsqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("ship", ship.ShipId);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+                return rowsAffected;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"❌ ShipService Error: {ex.Message}");
                 throw;
             }
         }
@@ -110,6 +122,24 @@ namespace ShipApp.Service
                 Debug.WriteLine($"❌ General DB Error: {ex}");
                 throw;
             }
+        }
+
+        private Ship MapShipToReader(NpgsqlDataReader reader)
+        {
+            return new Ship
+            {
+                ShipId = reader.GetInt64(reader.GetOrdinal("ship_id")),
+                ShipName = reader.GetString(reader.GetOrdinal("ship_name")),
+                Complete = reader.GetBoolean(reader.GetOrdinal("complete")),
+                IsNeeded = reader.GetBoolean(reader.GetOrdinal("is_needed")),
+                DateCompleted = reader.IsDBNull(reader.GetOrdinal("date_completed"))
+                                    ? (DateTime?)null
+                                    : reader.GetDateTime(reader.GetOrdinal("date_completed")),
+                CheckedStickers = reader.IsDBNull(reader.GetOrdinal("checked_stickers"))
+                                    ? string.Empty
+                                    : reader.GetString(reader.GetOrdinal("checked_stickers")),
+                IsPrinted = reader.GetBoolean(reader.GetOrdinal("is_printed"))
+            };
         }
 
     }

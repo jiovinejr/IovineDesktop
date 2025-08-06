@@ -10,6 +10,16 @@
         public string CheckedStickers { get; set; }
         public bool IsPrinted { get; set; }
 
+        public Ship()
+        {
+            ShipName = string.Empty;
+            CheckedStickers = string.Empty;
+            DateCompleted = null;
+            Complete = false;
+            IsNeeded = false;
+            IsPrinted = false;
+        }
+
         public Ship(string shipName)
         {
             ShipName = shipName;

@@ -1,6 +1,7 @@
 ﻿using Npgsql;
 using ShipApp.Data;
 using ShipApp.MVVM.Models;
+using ShipApp.MVVM.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -56,12 +57,10 @@ namespace ShipApp.Service
                     cmd.Parameters.AddWithValue("@originalName", originalName);
                     conn.Open();
 
-                    using (var reader = cmd.ExecuteReader())
+                    using var reader = cmd.ExecuteReader();
+                    if (reader.Read())
                     {
-                        if (reader.Read())
-                        {
-                            result = MapReaderToItem(reader);
-                        }
+                        result = MapReaderToItem(reader);
                     }
                 }
 
@@ -93,6 +92,27 @@ namespace ShipApp.Service
                 ItemQbId = reader.IsDBNull(reader.GetOrdinal("item_qb_id"))
                     ? 0 : reader.GetInt32(reader.GetOrdinal("item_qb_id"))
             };
+        }
+
+        public async Task<Item?> HandleUnknownItemAsync(string originalItemName)
+        {
+            try
+            {
+                var tcs = new TaskCompletionSource<Item>();
+                var addItemPage = new AddItemPage(originalItemName, tcs);
+
+                await Shell.Current.Navigation.PushModalAsync(addItemPage);
+
+                var item = await tcs.Task;
+                await Shell.Current.Navigation.PopModalAsync();
+
+                return item;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"❌ Failed to handle unknown item: {ex.Message}");
+                return null;
+            }
         }
     }
 }
