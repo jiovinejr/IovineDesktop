@@ -1,6 +1,5 @@
 ﻿using Npgsql;
 using ShipApp.Data;
-using ShipApp.Models;
 using ShipApp.MVVM.Models;
 using System;
 using System.Collections.Generic;

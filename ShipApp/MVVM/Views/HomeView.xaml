@@ -5,10 +5,39 @@
              x:Class="ShipApp.MVVM.Views.HomeView">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to Home!"
+    Text="Files To Process"
+    VerticalOptions="Center" 
+    HorizontalOptions="Center" />
+        <ListView ItemsSource="{Binding ShipsList}" x:Name="ShipsListView">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:Ship">
+                    <ViewCell>
+                        <StackLayout>
+                            <Grid Padding="2">
+                                <Label 
+                                    Text="{Binding ShipName}"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"/>
+                                <Button
+                                    Text="+"
+                                    Style="{StaticResource HomePageButton}"
+                                    CornerRadius="50"
+                                    Command="{Binding BindingContext.ProcessCommand, Source={x:Reference Name=ShipsListView}}"
+                                    CommandParameter="{Binding .}"
+                                    IsEnabled="{Binding IsNeeded, Converter={StaticResource InverseBoolConverter}}"
+                                    HorizontalOptions="End"/>
+                            </Grid>
+                            <BoxView HeightRequest="1" BackgroundColor="LightGray" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Label 
+            Text="Files To Process"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <ListView ItemsSource="{Binding FilesToProcess}" x:Name="HomeListView">
+        <ListView ItemsSource="{Binding FilesToProcess}" x:Name="FilesToProcessList">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="models:FileUpload">
                     <ViewCell>
@@ -27,7 +56,8 @@
                                         Margin="0,0,160,0" />
                                 <Button AutomationId="{Binding FileDriveId}"
                                         Text="Process"
-                                        Command="{Binding BindingContext.DownloadCommand, Source={x:Reference Name=HomeListView}}"
+                                        Style="{StaticResource HomePageButton}"
+                                        Command="{Binding BindingContext.ProcessCommand, Source={x:Reference Name=FilesToProcessList}}"
                                         CommandParameter="{Binding .}"
                                         IsEnabled="{Binding IsProcessing, Converter={StaticResource InverseBoolConverter}}"
                                         WidthRequest="150"

@@ -37,6 +37,20 @@
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
+            <Style x:Key="HomePageButton" TargetType="Button">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#980a1631" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
 
             <core:InverseBoolConverter x:Key="InverseBoolConverter" />
         </ResourceDictionary>

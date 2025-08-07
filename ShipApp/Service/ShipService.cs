@@ -2,9 +2,10 @@
 using Npgsql;
 using NpgsqlTypes;
 using ShipApp.Data;
-using ShipApp.Models;
+using ShipApp.MVVM.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,34 @@ namespace ShipApp.Service
 {
     internal class ShipService
     {
+        public ObservableCollection<Ship> GetShips ()
+        {
+            ObservableCollection<Ship> ships = new ObservableCollection<Ship> ();
+            try
+            {
+                using var conn = DbConnectionFactory.CreateConnection ();
+                conn.Open ();
+
+                string sql = @"SELECT ship_id, ship_name, complete, is_needed, date_completed, checked_stickers, is_printed
+                                FROM ship
+                                WHERE complete = false";
+
+                using var cmd = new NpgsqlCommand (sql, conn);
+                using var reader = cmd.ExecuteReader ();
+
+                while (reader.Read ())
+                {
+                    Ship ship = MapShipToReader (reader);
+                    ships.Add (ship);
+                }
+                return ships;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"❌ ShipService Error: {ex.Message}");
+                throw;
+            }
+        }
 
         public Ship GetShipByShipName(string shipName)
         {

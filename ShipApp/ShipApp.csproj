@@ -58,6 +58,7 @@
 
 	<ItemGroup>
 	  <None Remove="client_secrets.json" />
+	  <None Remove="Resources\Images\plus.png" />
 	</ItemGroup>
 
 	<ItemGroup>

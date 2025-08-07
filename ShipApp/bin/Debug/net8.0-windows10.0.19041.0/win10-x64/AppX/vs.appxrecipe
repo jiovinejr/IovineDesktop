@@ -29,25 +29,25 @@
     <AppXManifest Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-08-05T18:48:55.874</Modified>
+      <Modified>2025-08-07T21:52:28.492</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-08-05T18:43:33.371</Modified>
+      <Modified>2025-08-07T21:52:28.291</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\ShipApp.runtimeconfig.json">
       <PackagePath>ShipApp.runtimeconfig.json</PackagePath>
-      <Modified>2025-08-01T19:18:59.657</Modified>
+      <Modified>2025-08-07T21:28:40.527</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\ShipApp.dll">
       <PackagePath>ShipApp.dll</PackagePath>
-      <Modified>2025-08-05T18:48:55.387</Modified>
+      <Modified>2025-08-07T21:52:27.210</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>ShipApp.exe</PackagePath>
-      <Modified>2025-08-05T18:48:55.401</Modified>
+      <Modified>2025-08-07T21:52:27.259</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
@@ -55,23 +55,23 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-100.png">
       <PackagePath>splashSplashScreen.scale-100.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.654</Modified>
+      <Modified>2025-08-07T21:23:04.443</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-125.png">
       <PackagePath>splashSplashScreen.scale-125.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.671</Modified>
+      <Modified>2025-08-07T21:23:04.461</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-150.png">
       <PackagePath>splashSplashScreen.scale-150.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.684</Modified>
+      <Modified>2025-08-07T21:23:04.477</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-200.png">
       <PackagePath>splashSplashScreen.scale-200.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.707</Modified>
+      <Modified>2025-08-07T21:23:04.510</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-400.png">
       <PackagePath>splashSplashScreen.scale-400.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.812</Modified>
+      <Modified>2025-08-07T21:23:04.656</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\OpenSans-Regular.ttf">
       <PackagePath>OpenSans-Regular.ttf</PackagePath>
@@ -83,207 +83,211 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appicon.ico">
       <PackagePath>appicon.ico</PackagePath>
-      <Modified>2025-08-01T19:15:45.871</Modified>
+      <Modified>2025-08-07T21:23:04.718</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-100.png">
       <PackagePath>appiconLargeTile.scale-100.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.265</Modified>
+      <Modified>2025-08-07T21:23:05.286</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-125.png">
       <PackagePath>appiconLargeTile.scale-125.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.283</Modified>
+      <Modified>2025-08-07T21:23:05.304</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-150.png">
       <PackagePath>appiconLargeTile.scale-150.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.308</Modified>
+      <Modified>2025-08-07T21:23:05.329</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-200.png">
       <PackagePath>appiconLargeTile.scale-200.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.336</Modified>
+      <Modified>2025-08-07T21:23:05.365</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-400.png">
       <PackagePath>appiconLargeTile.scale-400.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.432</Modified>
+      <Modified>2025-08-07T21:23:05.499</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-16.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-16.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.979</Modified>
+      <Modified>2025-08-07T21:23:04.880</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-24.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-24.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.984</Modified>
+      <Modified>2025-08-07T21:23:04.892</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-256.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-256.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.009</Modified>
+      <Modified>2025-08-07T21:23:04.923</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-32.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-32.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.991</Modified>
+      <Modified>2025-08-07T21:23:04.900</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-48.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-48.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.997</Modified>
+      <Modified>2025-08-07T21:23:04.908</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-16.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-16.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.948</Modified>
+      <Modified>2025-08-07T21:23:04.830</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-24.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-24.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.952</Modified>
+      <Modified>2025-08-07T21:23:04.836</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-256.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-256.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.973</Modified>
+      <Modified>2025-08-07T21:23:04.874</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-32.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-32.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.956</Modified>
+      <Modified>2025-08-07T21:23:04.845</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-48.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-48.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.962</Modified>
+      <Modified>2025-08-07T21:23:04.855</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-100.png">
       <PackagePath>appiconLogo.scale-100.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.882</Modified>
+      <Modified>2025-08-07T21:23:04.734</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-125.png">
       <PackagePath>appiconLogo.scale-125.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.886</Modified>
+      <Modified>2025-08-07T21:23:04.741</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-150.png">
       <PackagePath>appiconLogo.scale-150.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.893</Modified>
+      <Modified>2025-08-07T21:23:04.750</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-200.png">
       <PackagePath>appiconLogo.scale-200.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.895</Modified>
+      <Modified>2025-08-07T21:23:04.761</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-400.png">
       <PackagePath>appiconLogo.scale-400.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.909</Modified>
+      <Modified>2025-08-07T21:23:04.770</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-16.png">
       <PackagePath>appiconLogo.targetsize-16.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.914</Modified>
+      <Modified>2025-08-07T21:23:04.777</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-24.png">
       <PackagePath>appiconLogo.targetsize-24.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.918</Modified>
+      <Modified>2025-08-07T21:23:04.788</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-256.png">
       <PackagePath>appiconLogo.targetsize-256.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.941</Modified>
+      <Modified>2025-08-07T21:23:04.820</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-32.png">
       <PackagePath>appiconLogo.targetsize-32.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.923</Modified>
+      <Modified>2025-08-07T21:23:04.797</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-48.png">
       <PackagePath>appiconLogo.targetsize-48.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.928</Modified>
+      <Modified>2025-08-07T21:23:04.803</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-100.png">
       <PackagePath>appiconMediumTile.scale-100.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.087</Modified>
+      <Modified>2025-08-07T21:23:05.040</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-125.png">
       <PackagePath>appiconMediumTile.scale-125.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.095</Modified>
+      <Modified>2025-08-07T21:23:05.050</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-150.png">
       <PackagePath>appiconMediumTile.scale-150.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.104</Modified>
+      <Modified>2025-08-07T21:23:05.065</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-200.png">
       <PackagePath>appiconMediumTile.scale-200.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.114</Modified>
+      <Modified>2025-08-07T21:23:05.085</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-400.png">
       <PackagePath>appiconMediumTile.scale-400.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.131</Modified>
+      <Modified>2025-08-07T21:23:05.107</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-100.png">
       <PackagePath>appiconSmallTile.scale-100.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.045</Modified>
+      <Modified>2025-08-07T21:23:04.977</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-125.png">
       <PackagePath>appiconSmallTile.scale-125.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.051</Modified>
+      <Modified>2025-08-07T21:23:04.986</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-150.png">
       <PackagePath>appiconSmallTile.scale-150.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.056</Modified>
+      <Modified>2025-08-07T21:23:04.999</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-200.png">
       <PackagePath>appiconSmallTile.scale-200.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.063</Modified>
+      <Modified>2025-08-07T21:23:05.013</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-400.png">
       <PackagePath>appiconSmallTile.scale-400.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.071</Modified>
+      <Modified>2025-08-07T21:23:05.032</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-100.png">
       <PackagePath>appiconStoreLogo.scale-100.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.013</Modified>
+      <Modified>2025-08-07T21:23:04.929</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-125.png">
       <PackagePath>appiconStoreLogo.scale-125.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.019</Modified>
+      <Modified>2025-08-07T21:23:04.936</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-150.png">
       <PackagePath>appiconStoreLogo.scale-150.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.025</Modified>
+      <Modified>2025-08-07T21:23:04.940</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-200.png">
       <PackagePath>appiconStoreLogo.scale-200.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.031</Modified>
+      <Modified>2025-08-07T21:23:04.952</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-400.png">
       <PackagePath>appiconStoreLogo.scale-400.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.041</Modified>
+      <Modified>2025-08-07T21:23:04.967</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-100.png">
       <PackagePath>appiconWideTile.scale-100.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.153</Modified>
+      <Modified>2025-08-07T21:23:05.137</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-125.png">
       <PackagePath>appiconWideTile.scale-125.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.164</Modified>
+      <Modified>2025-08-07T21:23:05.149</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-150.png">
       <PackagePath>appiconWideTile.scale-150.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.175</Modified>
+      <Modified>2025-08-07T21:23:05.164</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-200.png">
       <PackagePath>appiconWideTile.scale-200.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.198</Modified>
+      <Modified>2025-08-07T21:23:05.188</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-400.png">
       <PackagePath>appiconWideTile.scale-400.png</PackagePath>
-      <Modified>2025-08-01T19:15:46.245</Modified>
+      <Modified>2025-08-07T21:23:05.264</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-100.png">
       <PackagePath>dotnet_bot.scale-100.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.878</Modified>
+      <Modified>2025-08-07T21:23:04.721</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-125.png">
       <PackagePath>dotnet_bot.scale-125.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.888</Modified>
+      <Modified>2025-08-07T21:23:04.737</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-150.png">
       <PackagePath>dotnet_bot.scale-150.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.902</Modified>
+      <Modified>2025-08-07T21:23:04.756</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-200.png">
       <PackagePath>dotnet_bot.scale-200.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.919</Modified>
+      <Modified>2025-08-07T21:23:04.786</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-400.png">
       <PackagePath>dotnet_bot.scale-400.png</PackagePath>
-      <Modified>2025-08-01T19:15:45.993</Modified>
+      <Modified>2025-08-07T21:23:04.886</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\plus.scale-100.png">
+      <PackagePath>plus.scale-100.png</PackagePath>
+      <Modified>2025-08-07T20:44:00.691</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\client_secrets.json">
       <PackagePath>client_secrets.json</PackagePath>
@@ -295,7 +299,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\workspace\IovineShipDesktop\ShipApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\ShipApp.deps.json">
       <PackagePath>ShipApp.deps.json</PackagePath>
-      <Modified>2025-08-05T18:43:33.027</Modified>
+      <Modified>2025-08-07T21:28:40.411</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\jiovi\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.31\lib\net6.0\Microsoft.Windows.SDK.NET.dll">
       <PackagePath>Microsoft.Windows.SDK.NET.dll</PackagePath>

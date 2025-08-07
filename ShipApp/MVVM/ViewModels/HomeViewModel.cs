@@ -9,7 +9,6 @@ using ShipApp.Service;
 using ShipApp.MVVM.Models;
 using System.Windows.Input;
 using System.Diagnostics;
-using ShipApp.Models;
 using ShipApp.MVVM.Views;
 
 namespace ShipApp.MVVM.ViewModels
@@ -17,13 +16,14 @@ namespace ShipApp.MVVM.ViewModels
     public class HomeViewModel : BaseViewModel
     {
         public ObservableCollection<FileUpload> FilesToProcess { get; set; }
-        public ICommand DownloadCommand { get; }
+        public ObservableCollection<Ship> ShipsList { get; set; }
+        public ICommand ProcessCommand { get; }
 
         private readonly ItemService _itemService;
         private readonly ShipService _shipService;
         private readonly FileUploadService _fileUploadService;
         private readonly MeasurementService _measurementService;
-
+        private readonly OrderRecordService _orderRecordService;
 
         public HomeViewModel()
         {
@@ -31,19 +31,21 @@ namespace ShipApp.MVVM.ViewModels
             _measurementService = new MeasurementService();
             _shipService = new ShipService();
             _itemService = new ItemService();
+            _orderRecordService = new OrderRecordService();
 
 
             FilesToProcess = _fileUploadService.GetFilesToProcess();
+            ShipsList = _shipService.GetShips();
 
-            DownloadCommand = new RelayCommand<FileUpload>(
-                async (file) => await DownloadFileAsync(file),
+            ProcessCommand = new RelayCommand<FileUpload>(
+                async (file) => await ProcessFileAsync(file),
                 (file) => file != null && !file.IsProcessing
                 );
 
         }
 
 
-        private async Task DownloadFileAsync(FileUpload file)
+        private async Task ProcessFileAsync(FileUpload file)
         {
             try
             {
@@ -58,13 +60,20 @@ namespace ShipApp.MVVM.ViewModels
                 List<ExcelRecord> records = rdf.CreateExcelOrderList();
 
                 //Add Ship
-                //Ship ship = new Ship(records[0].ShipName);
-                //ship = _shipService.AddNewShip(ship);
+                string shipNameFromRecord = records[0].ShipName;
+                Ship ship = _shipService.GetShipByShipName(shipNameFromRecord);
+                if (ship == null)
+                {
+                    ship = _shipService.AddNewShip(new Ship(shipNameFromRecord));
+                }
+                else
+                {
+                    _orderRecordService.DeleteOrderRecordsByShip(ship);
+                }
 
                 //Loop Through excel file
                 foreach (ExcelRecord record in records)
                 {
-                    //Handle Item
                     Item item = _itemService.GetItemByOriginalName(record.Item);
                     Measurement measurement = _measurementService.GetMeasurementObjectByOriginalName(record.Measurement);
                     if (item == null)
@@ -85,13 +94,13 @@ namespace ShipApp.MVVM.ViewModels
                             continue; // Or throw
                         }
                     }
-
-                    Debug.WriteLine($"✅ Found or added item: {item}");
-                    Debug.WriteLine(measurement.ToString());
+                    _orderRecordService.InsertNewOrderRecord(record, ship, item, measurement);
+                    
                 }
-
-                //string newName = records[0].ShipName;
-                //await downloader.RenameDriveFile(file.FileDriveId, newName);
+                FilesToProcess.Remove(file);
+                ShipsList.Add(ship);
+                await downloader.RenameDriveFile(file.FileDriveId, shipNameFromRecord);
+                _fileUploadService.MarkFileAsProcessed(file.Id);
             }
             catch (Exception ex)
             {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
+
 namespace ShipApp
 {
     public static class MauiProgram
@@ -7,6 +8,7 @@ namespace ShipApp
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+
             builder
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
@@ -16,7 +18,7 @@ namespace ShipApp
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
