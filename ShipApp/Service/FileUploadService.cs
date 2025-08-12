@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 namespace ShipApp.Service
 {
-    class FileUploadService
+    public class FileUploadService
     {
         public void InsertFile(FileUpload file)
         {

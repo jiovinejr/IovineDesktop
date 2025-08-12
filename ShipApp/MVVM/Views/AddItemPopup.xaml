@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ShipApp.MVVM.ViewModels"
+             x:Class="ShipApp.MVVM.Views.AddItemPopup"
+             x:DataType="vm:AddItemViewModel"
+             WidthRequest="300">
+    <ScrollView>
+        <VerticalStackLayout Spacing="5">
+
+            <Label Text="Add New Item" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
+
+            <Entry Text="{Binding OriginalItemName}" IsEnabled="False" Placeholder="Original Item Name" />
+            <Entry Text="{Binding CleanItemName}" Placeholder="Clean Item Name" />
+            <Entry Text="{Binding CaseWeightText}" Placeholder="Case Weight" Keyboard="Numeric" />
+
+            <Picker Title="Select Inventory Item"
+                            ItemsSource="{Binding InventoryItems}"
+                            ItemDisplayBinding="{Binding InventoryName}"
+                            SelectedItem="{Binding SelectedInventoryItem}" />
+
+            <Picker Title="Select Qb Item"
+                            ItemsSource="{Binding QbItems}"
+                            ItemDisplayBinding="{Binding QbItemName}"
+                            SelectedItem="{Binding SelectedQbItem}" />
+
+            <HorizontalStackLayout Spacing="12" Margin="0,20,0,0" HorizontalOptions="Center">
+                <Button Text="Cancel" Command="{Binding CancelCommand}" />
+                <Button Text="Save Item" Command="{Binding SaveItemCommand}" />
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

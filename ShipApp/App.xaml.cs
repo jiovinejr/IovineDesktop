@@ -23,8 +23,7 @@ namespace ShipApp
         }
 
         private async Task InitializeGoogleAsync()
-        {
-            Debug.WriteLine("WERE HERE");
+        { 
             var driveService = await GoogleAuthHelper.GetDriveServiceAsync();
             
         }

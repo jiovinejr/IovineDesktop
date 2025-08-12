@@ -1,14 +1,13 @@
 using ShipApp.MVVM.ViewModels;
 using ShipApp.MVVM.Models;
+using CommunityToolkit.Maui.Views;
 
 namespace ShipApp.MVVM.Views;
 
-public partial class AddItemPage : ContentPage
+public partial class AddItemPage : Popup
 {
-    public AddItemPage(string originalItemName, TaskCompletionSource<Item> tcs)
+    public AddItemPage(string originalItemName)
     {
         InitializeComponent();
-
-        BindingContext = new AddItemViewModel(originalItemName, tcs);
     }
 }

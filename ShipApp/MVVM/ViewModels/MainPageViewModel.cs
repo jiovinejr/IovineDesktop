@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Microsoft.Extensions.DependencyInjection;
 using ShipApp.Core;
 using ShipApp.MVVM.Models;
 using ShipApp.MVVM.Views;
@@ -8,51 +9,45 @@ namespace ShipApp.MVVM.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
-        private ContentView _currentContent;
-        public ObservableCollection<NavigationItem> NavigationItems { get; set; }
+        private readonly IServiceProvider _services;
 
+        private ContentView _currentContent = null!;
         public ContentView CurrentContent
         {
             get => _currentContent;
-            set
-            {
-                _currentContent = value;
-                OnPropertyChanged();
-            }
+            set { _currentContent = value; OnPropertyChanged(); }
         }
 
+        public ObservableCollection<NavigationItem> NavigationItems { get; }
         public ICommand NavigateCommand { get; }
 
-        public MainPageViewModel()
+        // DI constructor
+        public MainPageViewModel(IServiceProvider services)
         {
+            _services = services;
+
             NavigationItems = new ObservableCollection<NavigationItem>
             {
-                new NavigationItem { Name = "Home", ViewName = "Home", IsSelected = true },
-                new NavigationItem { Name = "Inventory", ViewName = "Inventory", IsSelected = false },
-                new NavigationItem { Name = "Settings", ViewName = "Settings", IsSelected = false }
+                new() { Name = "Home",      ViewType = typeof(HomeView),      IsSelected = true  },
+                new() { Name = "Inventory", ViewType = typeof(InventoryView), IsSelected = false },
+                new() { Name = "Settings",  ViewType = typeof(SettingsView),  IsSelected = false }
             };
 
             NavigateCommand = new RelayCommand<NavigationItem>(OnNavigate);
 
-            CurrentContent = new HomeView();
+            // set initial view via DI
+            CurrentContent = (ContentView)_services.GetRequiredService(typeof(HomeView));
         }
 
-        private void OnNavigate(NavigationItem selectedItem)
+        private void OnNavigate(NavigationItem? selected)
         {
-            if (selectedItem == null) return;
+            if (selected is null) return;
 
-            foreach (var item in NavigationItems)
-                item.IsSelected = false;
+            foreach (var n in NavigationItems) n.IsSelected = false;
+            selected.IsSelected = true;
 
-            selectedItem.IsSelected = true;
-
-            CurrentContent = selectedItem.ViewName switch
-            {
-                "Home" => new HomeView(),
-                "Inventory" => new InventoryView(),
-                "Settings" => new SettingsView(),
-                _ => new HomeView()
-            };
+            // resolve a fresh instance each time
+            CurrentContent = (ContentView)_services.GetRequiredService(selected.ViewType);
         }
     }
 }

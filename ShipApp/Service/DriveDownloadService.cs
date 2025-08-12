@@ -7,7 +7,7 @@ using NPOI.SS.Formula.Functions;
 
 namespace ShipApp.Service
 {
-    internal class DriveDownloadService
+    public class DriveDownloadService
     {
         private readonly DriveService _driveService;
 

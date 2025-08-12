@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ShipApp.Service
 {
-    internal class MeasurementService
+    public class MeasurementService
     {
         public Measurement InsertNewMeasurement(Measurement measurement)
         {

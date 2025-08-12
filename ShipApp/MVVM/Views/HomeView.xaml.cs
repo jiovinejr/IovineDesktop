@@ -5,9 +5,9 @@ namespace ShipApp.MVVM.Views;
 
 public partial class HomeView : ContentView
 {
-	public HomeView()
+	public HomeView(HomeViewModel vm)
 	{
 		InitializeComponent();
-		BindingContext = new HomeViewModel();
+		BindingContext = vm;
     }
 }

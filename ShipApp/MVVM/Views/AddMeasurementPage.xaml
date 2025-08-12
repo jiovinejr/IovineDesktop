@@ -3,11 +3,9 @@
              x:Class="ShipApp.MVVM.Views.AddMeasurementPage"
              Title="AddMeasurementPage">
     <ScrollView>
-        <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="20">
-            <Frame Padding="20"
+        <Grid Padding="20">
+            <Border Padding="20"
                    WidthRequest="400"
-                   HasShadow="True"
-                   CornerRadius="12"
                    BackgroundColor="White"
                    HorizontalOptions="Center">
                 <VerticalStackLayout Spacing="10">
@@ -23,7 +21,7 @@
                             HorizontalOptions="Center" />
 
                 </VerticalStackLayout>
-            </Frame>
-        </VerticalStackLayout>
+            </Border>
+        </Grid>
     </ScrollView>
 </ContentPage>

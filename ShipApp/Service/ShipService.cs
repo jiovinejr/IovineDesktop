@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace ShipApp.Service
 {
-    internal class ShipService
+    public class ShipService
     {
         public ObservableCollection<Ship> GetShips ()
         {

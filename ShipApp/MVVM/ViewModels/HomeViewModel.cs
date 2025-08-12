@@ -1,49 +1,67 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ShipApp.Core;
-using ShipApp.Service;
-using ShipApp.MVVM.Models;
-using System.Windows.Input;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
-using ShipApp.MVVM.Views;
+using System.Windows.Input;
+using ShipApp.Core;
+using ShipApp.MVVM.Models;
+using ShipApp.Service;
+using CommunityToolkit.Maui;
 
 namespace ShipApp.MVVM.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
-        public ObservableCollection<FileUpload> FilesToProcess { get; set; }
-        public ObservableCollection<Ship> ShipsList { get; set; }
-        public ICommand ProcessCommand { get; }
+        public ObservableCollection<FileUpload> FilesToProcess { get; }
+        public ObservableCollection<Ship> ShipsList { get; }
 
+        public ICommand ProcessCommand { get; }
+        public ICommand ShowAddItemPopupCommand { get; }
+
+        private readonly IPopupService _popupService;
         private readonly ItemService _itemService;
         private readonly ShipService _shipService;
         private readonly FileUploadService _fileUploadService;
         private readonly MeasurementService _measurementService;
         private readonly OrderRecordService _orderRecordService;
 
-        public HomeViewModel()
+        // DI constructor
+        public HomeViewModel(
+            IPopupService popupService,
+            ItemService itemService,
+            ShipService shipService,
+            FileUploadService fileUploadService,
+            MeasurementService measurementService,
+            OrderRecordService orderRecordService)
         {
-            _fileUploadService = new FileUploadService();
-            _measurementService = new MeasurementService();
-            _shipService = new ShipService();
-            _itemService = new ItemService();
-            _orderRecordService = new OrderRecordService();
-
+            _popupService = popupService;
+            _itemService = itemService;
+            _shipService = shipService;
+            _fileUploadService = fileUploadService;
+            _measurementService = measurementService;
+            _orderRecordService = orderRecordService;
 
             FilesToProcess = _fileUploadService.GetFilesToProcess();
             ShipsList = _shipService.GetShips();
 
             ProcessCommand = new RelayCommand<FileUpload>(
-                async (file) => await ProcessFileAsync(file),
-                (file) => file != null && !file.IsProcessing
-                );
+                async file => await ProcessFileAsync(file),
+                file => file is not null && !file.IsProcessing);
 
+            ShowAddItemPopupCommand = new RelayCommand(async () => await ShowAddItemPopup());
         }
 
+        private async Task ShowAddItemPopup()
+        {
+            var args = new Dictionary<string, object>
+            {
+                [nameof(AddItemViewModel.OriginalItemName)] = "SAMPLE ORIGINAL"
+            };
+
+            // Fire it up; ignore the result for a quick visual check
+            await _popupService.ShowPopupAsync<AddItemViewModel, ShipApp.MVVM.Models.Item?>(
+                Shell.Current,
+                options: PopupOptions.Empty,
+                shellParameters: args);
+        }
 
         private async Task ProcessFileAsync(FileUpload file)
         {
@@ -54,49 +72,36 @@ namespace ShipApp.MVVM.ViewModels
                 var driveService = await GoogleAuthHelper.GetDriveServiceAsync();
                 var downloader = new DriveDownloadService(driveService);
 
-                //Download Logic
-                MemoryStream stream = await downloader.DownloadFileAsync(file.FileDriveId);
+                using var stream = await downloader.DownloadFileAsync(file.FileDriveId);
                 var rdf = new ReadDataFile(stream, file.FileName);
-                List<ExcelRecord> records = rdf.CreateExcelOrderList();
+                var records = rdf.CreateExcelOrderList();
 
-                //Add Ship
                 string shipNameFromRecord = records[0].ShipName;
-                Ship ship = _shipService.GetShipByShipName(shipNameFromRecord);
-                if (ship == null)
-                {
-                    ship = _shipService.AddNewShip(new Ship(shipNameFromRecord));
-                }
-                else
+                var ship = _shipService.GetShipByShipName(shipNameFromRecord);
+                if (ship != null) 
                 {
                     _orderRecordService.DeleteOrderRecordsByShip(ship);
                 }
-
-                //Loop Through excel file
-                foreach (ExcelRecord record in records)
+                else
                 {
-                    Item item = _itemService.GetItemByOriginalName(record.Item);
-                    Measurement measurement = _measurementService.GetMeasurementObjectByOriginalName(record.Measurement);
-                    if (item == null)
-                    {
-                        item = await _itemService.HandleUnknownItemAsync(record.Item);
-                        if (item == null)
-                        {
-                            Debug.WriteLine($"❌ Item still not found after modal for: {record.Item}");
-                            continue; // Or throw
-                        }
-                    }
-                    if (measurement == null)
-                    {
-                        measurement = await _measurementService.HandleUnknownMeasurement(record.Measurement);
-                        if (measurement == null)
-                        {
-                            Debug.WriteLine($"❌ Measurement still not found after modal for: {record.Item}");
-                            continue; // Or throw
-                        }
-                    }
-                    _orderRecordService.InsertNewOrderRecord(record, ship, item, measurement);
-                    
+                    ship = _shipService.AddNewShip(new Ship(shipNameFromRecord));
                 }
+
+                foreach (var record in records)
+                {
+                    var item = _itemService.GetItemByOriginalName(record.Item)
+                               ?? await _itemService.HandleUnknownItemAsync(record.Item);
+
+                    if (item is null) { Debug.WriteLine($"❌ Item still not found: {record.Item}"); continue; }
+
+                    var measurement = _measurementService.GetMeasurementObjectByOriginalName(record.Measurement)
+                                     ?? await _measurementService.HandleUnknownMeasurement(record.Measurement);
+
+                    if (measurement is null) { Debug.WriteLine($"❌ Measurement still not found: {record.Measurement}"); continue; }
+
+                    _orderRecordService.InsertNewOrderRecord(record, ship, item, measurement);
+                }
+
                 FilesToProcess.Remove(file);
                 ShipsList.Add(ship);
                 await downloader.RenameDriveFile(file.FileDriveId, shipNameFromRecord);
@@ -106,7 +111,10 @@ namespace ShipApp.MVVM.ViewModels
             {
                 Debug.WriteLine($"❌ Download error: {ex.Message}");
             }
-            finally { file.IsProcessing = false; };
+            finally
+            {
+                file.IsProcessing = false;
+            }
         }
     }
 }

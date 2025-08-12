@@ -7,8 +7,7 @@ namespace ShipApp.MVVM.Models
         private bool _isSelected;
 
         public string? Name { get; set; }
-        public string? ViewName { get; set; }
-
+        public Type ViewType { get; set; } = typeof(ContentView);
         public bool IsSelected
         {
             get => _isSelected;

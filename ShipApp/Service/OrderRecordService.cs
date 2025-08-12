@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ShipApp.Service
 {
-    internal class OrderRecordService
+    public class OrderRecordService
     {
         public void InsertNewOrderRecord(ExcelRecord excelRecord, Ship ship, Item item, Measurement measurement)
         {

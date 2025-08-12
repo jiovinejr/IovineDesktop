@@ -4,10 +4,13 @@
              xmlns:models="clr-namespace:ShipApp.MVVM.Models"
              x:Class="ShipApp.MVVM.Views.HomeView">
     <VerticalStackLayout>
+        <Button
+          Text="Show Add Item Popup"
+          Command="{Binding ShowAddItemPopupCommand}" />
         <Label 
-    Text="Files To Process"
-    VerticalOptions="Center" 
-    HorizontalOptions="Center" />
+            Text="Ships List"
+            VerticalOptions="Center" 
+            HorizontalOptions="Start" />
         <ListView ItemsSource="{Binding ShipsList}" x:Name="ShipsListView">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="models:Ship">
