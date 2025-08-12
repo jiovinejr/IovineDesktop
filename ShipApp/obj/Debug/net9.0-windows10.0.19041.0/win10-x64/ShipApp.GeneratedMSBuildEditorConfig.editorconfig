@@ -46,12 +46,6 @@ build_metadata.AdditionalFiles.ManifestResourceName = ShipApp.MVVM.Views.AddItem
 build_metadata.AdditionalFiles.TargetPath = MVVM\Views\AddItemPopup.xaml
 build_metadata.AdditionalFiles.RelativePath = MVVM\Views\AddItemPopup.xaml
 
-[C:/Users/jiovi/workspace/IovineShipDesktop/ShipApp/MVVM/Views/AddMeasurementPage.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = ShipApp.MVVM.Views.AddMeasurementPage.xaml
-build_metadata.AdditionalFiles.TargetPath = MVVM\Views\AddMeasurementPage.xaml
-build_metadata.AdditionalFiles.RelativePath = MVVM\Views\AddMeasurementPage.xaml
-
 [C:/Users/jiovi/workspace/IovineShipDesktop/ShipApp/MVVM/Views/AddMeasurementPopup.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = ShipApp.MVVM.Views.AddMeasurementPopup.xaml
