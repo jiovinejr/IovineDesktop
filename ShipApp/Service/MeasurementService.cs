@@ -1,6 +1,9 @@
-﻿using Npgsql;
+﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Core;
+using Npgsql;
 using ShipApp.Data;
 using ShipApp.MVVM.Models;
+using ShipApp.MVVM.ViewModels;
 using ShipApp.MVVM.Views;
 using System;
 using System.Collections.Generic;
@@ -14,6 +17,12 @@ namespace ShipApp.Service
 {
     public class MeasurementService
     {
+        private readonly IPopupService _popupService;
+
+        public MeasurementService(IPopupService popupService)
+        {
+            _popupService = popupService;
+        }
         public Measurement InsertNewMeasurement(Measurement measurement)
         {
             try
@@ -75,25 +84,26 @@ namespace ShipApp.Service
             };
         }
 
-        public async Task<Measurement?> HandleUnknownMeasurement(string originalMeasurementName)
+        public async Task<Measurement?> HandleUnknownMeasurementAsync(string originalMeasurementName)
         {
-            try
+            var args = new Dictionary<string, object>
             {
-                var tcs = new TaskCompletionSource<Measurement>();
-                var addMeasurementPage = new AddMeasurementPage(originalMeasurementName, tcs);
+                [nameof(AddMeasurementViewModel.OriginalMeasurementName)] = originalMeasurementName
+            };
 
-                await Shell.Current.Navigation.PushModalAsync(addMeasurementPage);
+            // Show popup and await the result (null if canceled)
+            IPopupResult<Measurement?> result =
+                await _popupService.ShowPopupAsync<AddMeasurementViewModel, Measurement?>(
+                    Shell.Current,
+                    options: PopupOptions.Empty,
+                    shellParameters: args);
 
-                var measurement = await tcs.Task;
-                await Shell.Current.Navigation.PopModalAsync();
-
-                return measurement;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"❌ Failed to handle unknown measurement: {ex.Message}");
+            var measurement = result.Result;
+            if (measurement is null)
                 return null;
-            }
+
+            // Persist and return (assumes you already have this method)
+            return InsertNewMeasurement(measurement);
         }
     }
 }

@@ -8,6 +8,6 @@ public partial class AddMeasurementPage : ContentPage
     public AddMeasurementPage(string originalMeasurementName, TaskCompletionSource<Measurement> tcs)
     {
         InitializeComponent();
-        BindingContext = new AddMeasurementViewModel(originalMeasurementName, tcs);
+        //BindingContext = new AddMeasurementViewModel(originalMeasurementName, tcs);
     }
 }

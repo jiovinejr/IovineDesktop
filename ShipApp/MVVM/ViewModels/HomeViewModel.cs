@@ -53,11 +53,11 @@ namespace ShipApp.MVVM.ViewModels
         {
             var args = new Dictionary<string, object>
             {
-                [nameof(AddItemViewModel.OriginalItemName)] = "SAMPLE ORIGINAL"
+                [nameof(AddMeasurementViewModel.OriginalMeasurementName)] = "SAMPLE ORIGINAL"
             };
 
             // Fire it up; ignore the result for a quick visual check
-            await _popupService.ShowPopupAsync<AddItemViewModel, ShipApp.MVVM.Models.Item?>(
+            await _popupService.ShowPopupAsync<AddMeasurementViewModel, Measurement?>(
                 Shell.Current,
                 options: PopupOptions.Empty,
                 shellParameters: args);
@@ -95,7 +95,7 @@ namespace ShipApp.MVVM.ViewModels
                     if (item is null) { Debug.WriteLine($"❌ Item still not found: {record.Item}"); continue; }
 
                     var measurement = _measurementService.GetMeasurementObjectByOriginalName(record.Measurement)
-                                     ?? await _measurementService.HandleUnknownMeasurement(record.Measurement);
+                                     ?? await _measurementService.HandleUnknownMeasurementAsync(record.Measurement);
 
                     if (measurement is null) { Debug.WriteLine($"❌ Measurement still not found: {record.Measurement}"); continue; }
 

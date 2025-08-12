@@ -1,74 +1,60 @@
-﻿using ShipApp.Core;
+﻿using CommunityToolkit.Maui;          // IPopupService
+using Microsoft.Maui.Controls;        // IQueryAttributable
+using ShipApp.Core;
 using ShipApp.MVVM.Models;
-using ShipApp.Service;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace ShipApp.MVVM.ViewModels
 {
-    public class AddMeasurementViewModel : BaseViewModel
+    public class AddMeasurementViewModel : BaseViewModel, IQueryAttributable
     {
-        private readonly MeasurementService _measurementService = new();
-        private readonly TaskCompletionSource<Measurement> _completionSource;
-        private readonly RelayCommand _saveMeasurementCommand;
+        private readonly IPopupService _popupService;
+        private readonly RelayCommand _saveCommand;
+        private readonly RelayCommand _cancelCommand;
 
-        private string _originalMeasurementName;
         public string OriginalMeasurementName
         {
             get => _originalMeasurementName;
             set => SetProperty(ref _originalMeasurementName, value);
         }
+        private string _originalMeasurementName = string.Empty;
 
-        private string _cleanMeasurementName;
         public string CleanMeasurementName
         {
             get => _cleanMeasurementName;
-            set
-            {
-                SetProperty(ref _cleanMeasurementName, value);
-                _saveMeasurementCommand.RaiseCanExecuteChanged();
-            }
+            set { SetProperty(ref _cleanMeasurementName, value); _saveCommand.RaiseCanExecuteChanged(); }
+        }
+        private string _cleanMeasurementName = string.Empty;
+
+        public ICommand SaveMeasurementCommand => _saveCommand;
+        public ICommand CancelCommand => _cancelCommand;
+
+        public AddMeasurementViewModel(IPopupService popupService)
+        {
+            _popupService = popupService;
+            _saveCommand = new RelayCommand(async () => await SaveAsync(), CanSave);
+            _cancelCommand = new RelayCommand(async () => await _popupService.ClosePopupAsync(Shell.Current));
         }
 
-        public ICommand SaveMeasurementCommand => _saveMeasurementCommand;
-
-        public AddMeasurementViewModel(string originalName, TaskCompletionSource<Measurement> completionSource)
+        // This is how Shell parameters set OriginalMeasurementName:
+        public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-            _completionSource = completionSource;
-            OriginalMeasurementName = originalName;
-
-            _saveMeasurementCommand = new RelayCommand(async () => await SaveMeasurement(), CanSave);
+            if (query.TryGetValue(nameof(OriginalMeasurementName), out var v) && v is string s)
+                OriginalMeasurementName = s;
         }
 
-        private async Task SaveMeasurement()
-        {
-            try
-            {
-                var newMeasurement = new Measurement
-                {
-                    OriginalMeasurementName = this.OriginalMeasurementName,
-                    CleanMeasurementName = this.CleanMeasurementName
-                };
+        private bool CanSave() => !string.IsNullOrWhiteSpace(CleanMeasurementName);
 
-                var inserted = _measurementService.InsertNewMeasurement(newMeasurement);
-                _completionSource.SetResult(inserted);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"❌ Failed to add measurement: {ex.Message}");
-                _completionSource.SetException(ex);
-            }
-        }
-
-        private bool CanSave()
+        private async Task SaveAsync()
         {
-            return !string.IsNullOrWhiteSpace(CleanMeasurementName);
+            var measurement = new Measurement
+            {
+                OriginalMeasurementName = OriginalMeasurementName,
+                CleanMeasurementName = CleanMeasurementName
+            };
+
+            // Close popup and return the new (unsaved) Measurement to the caller
+            await _popupService.ClosePopupAsync(Shell.Current, measurement);
         }
     }
-
 }

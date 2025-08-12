@@ -14,9 +14,6 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <ItemGroup>
-    <MauiXaml Update="MVVM\Views\AddItemPage.xaml">
-      <SubType>Designer</SubType>
-    </MauiXaml>
     <MauiXaml Update="MVVM\Views\AddMeasurementPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

@@ -23,7 +23,11 @@ namespace ShipApp
                 });
             builder.Services.AddSingleton<AppShell>();
 
+            //Popups
             builder.Services.AddTransientPopup<AddItemPopup, AddItemViewModel>();
+            builder.Services.AddTransientPopup<AddMeasurementPopup, AddMeasurementViewModel>();
+
+            //Services
             builder.Services.AddScoped<ItemService>();
             builder.Services.AddScoped<ShipService>();
             builder.Services.AddScoped<FileUploadService>();
